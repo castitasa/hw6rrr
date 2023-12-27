@@ -1,58 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
+import fetchDetailesPosts from '../../store/creators/fetchDetailesPosts';
+import { useSelector, useDispatch } from 'react-redux';
 
 const PostsDetailes = () => {
+  const { details } = useSelector((state) => state.PostSlice)
+  const { id } = useParams();
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchDetailesPosts(id))
+  }, []);
 
-    const [posts, setPosts] = useState([]);
-    const {id} = useParams();
-  
-    useEffect(() => {
-      fetch('https://jsonplaceholder.typicode.com/posts/'+id)
-      .then((res) => { return res.json() }).
-      then((data) => {
-          setPosts(data);
-      })
-    }, []);
-
-    return (
-      <div>
-        {posts.id? 
-          <div>
-            <Link to={'/'}>Back</Link>
-            <h1>{posts.body}</h1>
-            <h1>{posts.id} </h1>
-            <h2>{posts.title}</h2>
-          </div>
-          :''
-        }
-      </div>
-    );
+  return (
+    <div>
+      {details.id ?
+        <div>
+          <Link to={'/'}>Back</Link>
+          <h1>{details.body}</h1>
+          <h1>{details.id} </h1>
+          <h2>{details.title}</h2>
+        </div>
+        : ''
+      }
+    </div>
+  );
 }
 
-
-
-
-
-
-
-
 export default PostsDetailes;
-// import { useParams, useHistory } from 'react-router-dom';
-
-// function PostsDetailes(props) {
-//     const { postId } = useParams();
-//     const post = props.posts.find((post) => post.id === postId);
-//     const history = useHistory();
-   
-//     if (!post) {
-//        return <div>Loading...</div>;
-//     }
-   
-//     return (
-//        <div>
-//          <h2>{post.title}</h2>
-//          <p>{post.body}</p>
-//          <button onClick={() => history.goBack()}>Go Back</button>
-//        </div>
-//     );
-//    }
