@@ -1,0 +1,57 @@
+.error {
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.page_404 {
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    font-family: 'Gothic725BdBT', sans-serif;
+    text-transform: uppercase;
+    border: solid 15px white;
+    padding-bottom: 50px;
+    box-shadow: 0px 0px 70px 5px rgba(255, 255, 255, 0.7);
+}
+
+.page_404 p {
+    font-size: 300px;
+    margin: 0;
+}
+
+.page_404 span {
+    font-size: 32px;
+}
+
+@media screen and (max-width: 1500px) {
+    .page_404 {
+        padding-bottom: 30px;
+    }
+
+    .page_404 p {
+        font-size: 200px;
+    }
+
+    .page_404 span {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .page_404 {
+        padding-bottom: 15px;
+    }
+
+    .page_404 p {
+        font-size: 100px;
+    }
+
+    .page-404 span {
+        font-size: 10px;
+    }
+}

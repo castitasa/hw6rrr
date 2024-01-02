@@ -1,9 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, isAllOf } from '@reduxjs/toolkit'
 import fetchAllPosts from '../creators/fetchAllPosts'
 import fetchDetailesPosts from '../creators/fetchDetailesPosts'
 const initialState = {
     posts: [],
-    details: {}
+    details: {},
+    isLoading: true,
+    errorPost: '',
 }
 
 export const postslice = createSlice({
@@ -18,10 +20,15 @@ export const postslice = createSlice({
         builder
             .addCase(fetchAllPosts.fulfilled, (state, action) => {
                 state.posts = action.payload
+                state.isLoading = false;
 
             }).addCase(fetchDetailesPosts.fulfilled, (state, action) => {
                 state.details = action.payload
+            }).addCase(fetchDetailesPosts.rejected,(state, action) =>{
+                state.errorPost = action.payload;
+                state.isLoading = false;
             })
+     
     }
 })
 
